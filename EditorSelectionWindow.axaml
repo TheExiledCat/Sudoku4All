@@ -1,0 +1,20 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Sudoku.EditorSelectionWindow"
+        Title="EditorSelectionWindow"
+        Width="800"
+        Height="400"
+        CanResize="False"
+         
+        WindowStartupLocation="CenterScreen">
+  <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center" >
+
+    <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal" HorizontalAlignment="Stretch" >
+      <TextBox Text="" TextWrapping="NoWrap" AcceptsReturn="False" AcceptsTab="False" MaxLines="1"  VerticalAlignment="Center" HorizontalAlignment="Center" Watermark="File Path: E.g. C:/Program%20Files/Somefile.sdku"/>
+      <Button Click="BrowseSudokuHandler" HorizontalAlignment="Stretch">Browse</Button>
+      </StackPanel>
+    </StackPanel>
+</Window>
