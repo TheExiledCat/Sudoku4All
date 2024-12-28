@@ -3,18 +3,19 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="Sudoku.EditorSelectionWindow"
+        x:Class="Sudoku.Windows.EditorSelectionWindow"
         Title="EditorSelectionWindow"
         Width="800"
         Height="400"
         CanResize="False"
          
         WindowStartupLocation="CenterScreen">
-  <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center" >
-
+  <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
+    <Label>Please open a sudoku file or create a new one</Label>
     <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal" HorizontalAlignment="Stretch" >
-      <TextBox Text="" TextWrapping="NoWrap" AcceptsReturn="False" AcceptsTab="False" MaxLines="1"  VerticalAlignment="Center" HorizontalAlignment="Center" Watermark="File Path: E.g. C:/Program%20Files/Somefile.sdku"/>
+      <TextBox Margin="5 0" TextWrapping="NoWrap" AcceptsReturn="False" AcceptsTab="False" MaxLines="1"  VerticalAlignment="Center" HorizontalAlignment="Center" Watermark="File Path: E.g. C:/Program%20Files/Somefile.sdku"/>
       <Button Click="BrowseSudokuHandler" HorizontalAlignment="Stretch">Browse</Button>
+      <Button Click="CreateSudokuHandler" HorizontalAlignment="Stretch" Classes="Success" >Create New</Button>
       </StackPanel>
     </StackPanel>
 </Window>
