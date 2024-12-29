@@ -4,6 +4,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Avalonia.Platform.Storage;
@@ -18,6 +19,7 @@ public partial class SudokuEditor : Window
     Sdk.Sudoku m_CurrentSudoku;
     IStorageFile? m_CurrentFile;
     bool m_SudokuChanged = true;
+    public int Zoom { get; set; }
     public SudokuEditor(Sdk.Sudoku? sudoku = null, IStorageFile? file = null)
     {
         InitializeComponent();
@@ -31,7 +33,9 @@ public partial class SudokuEditor : Window
         {
             Toolbar.OpenPaneLength = Width / 4;
         };
+
     }
+
     public void SaveAsOrOverwriteHandler(object sender, RoutedEventArgs args)
     {
         if (m_CurrentFile == null)
@@ -60,6 +64,17 @@ public partial class SudokuEditor : Window
         MainWindow window = new MainWindow();
         window.Show();
         Close();
+    }
+    private void ZoomHandler(object sender, RangeBaseValueChangedEventArgs args)
+    {
+        if (ZoomAmount != null)
+        {
+            ZoomAmount.Text = args.NewValue.ToString("0.00");
+
+        }
+
+
+
     }
     async Task Overwrite()
     {
