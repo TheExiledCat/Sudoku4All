@@ -19,7 +19,7 @@ public partial class SudokuEditor : Window
     Sdk.Sudoku m_CurrentSudoku;
     IStorageFile? m_CurrentFile;
     bool m_SudokuChanged = true;
-    public int Zoom { get; set; }
+    public float Zoom { get; set; }
     public SudokuEditor(Sdk.Sudoku? sudoku = null, IStorageFile? file = null)
     {
         InitializeComponent();
@@ -33,6 +33,7 @@ public partial class SudokuEditor : Window
         {
             Toolbar.OpenPaneLength = Width / 4;
         };
+
 
     }
 
@@ -65,16 +66,28 @@ public partial class SudokuEditor : Window
         window.Show();
         Close();
     }
+    void ResetZoomHandler(object sender, RoutedEventArgs args)
+    {
+
+        UpdateZoom(1);
+        ZoomSlider.Value = Zoom;
+    }
     private void ZoomHandler(object sender, RangeBaseValueChangedEventArgs args)
+    {
+        UpdateZoom((float)args.NewValue);
+
+
+
+
+    }
+    void UpdateZoom(float newValue)
     {
         if (ZoomAmount != null)
         {
-            ZoomAmount.Text = args.NewValue.ToString("0.00");
-
+            Zoom = newValue;
+            ZoomAmount.Text = Zoom.ToString("0.00");
+            viewportZoomBorder.Zoom(Zoom, viewport.Viewport.Width / 2, viewport.Viewport.Height / 2);
         }
-
-
-
     }
     async Task Overwrite()
     {

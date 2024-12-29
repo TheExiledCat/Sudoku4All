@@ -63,33 +63,53 @@
         </ScrollViewer>
         <Border
           Grid.Row="1"
-          Padding="100,20"
+          Padding="100,5"
           HorizontalAlignment="Stretch"
           VerticalAlignment="Stretch"
           Background="Gray">
-          <Grid Name="Footer" HorizontalAlignment="Stretch">
+          <Grid
+            Name="Footer"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="3*" />
+              <ColumnDefinition Width="1*" />
               <ColumnDefinition Width="1*" />
               <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
-            <Grid
-              Grid.Column="0"
-              HorizontalAlignment="Stretch"
-              Background="Red">
+            <Grid Grid.Column="0" HorizontalAlignment="Stretch">
               <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="Auto" />
               </Grid.ColumnDefinitions>
-              <Label FontSize="16">Zoom Level:</Label>
+              <Label
+                Grid.Column="0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="16">
+                Zoom Level:
+              </Label>
               <Slider
                 Name="ZoomSlider"
+                Grid.Column="1"
                 HorizontalAlignment="Stretch"
+                VerticalAlignment="Center"
                 Maximum="2"
                 Minimum="0.5"
-                ValueChanged="ZoomHandler" />
-              <TextBlock Name="ZoomAmount" Grid.Column="1" />
+                ValueChanged="ZoomHandler"
+                Value="1" />
+              <TextBlock
+                Name="ZoomAmount"
+                Grid.Column="2"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center" />
+              <Button
+                Grid.Column="3"
+                VerticalAlignment="Center"
+                Click="ResetZoomHandler">
+                ⟳
+              </Button>
             </Grid>
 
           </Grid>
