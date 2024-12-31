@@ -1,139 +1,142 @@
-<Window
-  x:Class="Sudoku.Windows.SudokuEditor"
-  xmlns="https://github.com/avaloniaui"
-  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  xmlns:paz="using:Avalonia.Controls.PanAndZoom"
-  Title="Editor"
-  d:DesignHeight="450"
-  d:DesignWidth="800"
-  mc:Ignorable="d">
-  <Window.Styles>
-    <Style Selector="Label,Button.h1">
-      <Setter Property="FontSize" Value="30" />
-    </Style>
-  </Window.Styles>
-  <Grid>
-    <Grid.RowDefinitions>
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="3*" />
-      <RowDefinition Height="Auto" />
-    </Grid.RowDefinitions>
-    <Menu>
-      <MenuItem Header="_File">
-        <MenuItem Header="_Open" />
-        <MenuItem Click="SaveAsOrOverwriteHandler" Header="_Save" />
-        <MenuItem Click="SaveAsHandler" Header="_Save As" />
-        <MenuItem Click="HomeMenuHandler" Header="_Home" />
-      </MenuItem>
-      <MenuItem Header="_Edit" />
-      <MenuItem Header="_Help" />
-    </Menu>
-
-    <SplitView
-      Name="Toolbar"
-      Grid.Row="1"
-      DisplayMode="CompactOverlay"
-      IsPaneOpen="False"
-      OpenPaneLength="200"
-      PanePlacement="Right">
-      <Grid
-        Name="ContentGrid"
-        HorizontalAlignment="Stretch"
-        VerticalAlignment="Stretch">
+<Window x:Class="Sudoku.Windows.SudokuEditor"
+        xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:paz="using:Avalonia.Controls.PanAndZoom"
+        Title="Editor"
+        d:DesignHeight="450"
+        d:DesignWidth="800"
+        mc:Ignorable="d">
+    <Window.Styles>
+        <Style Selector="Label,Button.h1">
+            <Setter Property="FontSize"
+                    Value="30" />
+        </Style>
+        <Style Selector="#toolbox TextBox, #toolbox  Label">
+            <Setter Property="HorizontalAlignment"
+                    Value="Stretch" />
+            <Setter Property="FontSize"
+                    Value="20" />
+        </Style>
+        <Style Selector="#toolbox Label">
+            <Setter Property="HorizontalAlignment"
+                    Value="Center" />
+            <Setter Property="FontSize"
+                    Value="16" />
+        </Style>
+    </Window.Styles>
+    <Grid>
         <Grid.RowDefinitions>
-          <RowDefinition Height="1*" />
-          <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <ScrollViewer
-          Name="viewport"
-          Grid.Row="0"
-          HorizontalScrollBarVisibility="Auto"
-          VerticalScrollBarVisibility="Auto">
-          <paz:ZoomBorder
-            Name="viewportZoomBorder"
-            ClipToBounds="True"
-            EnableZoom="False"
-            Stretch="None">
-            <Label>Test label</Label>
-
-          </paz:ZoomBorder>
-
-        </ScrollViewer>
-        <Border
-          Grid.Row="1"
-          Padding="100,5"
-          HorizontalAlignment="Stretch"
-          VerticalAlignment="Stretch"
-          Background="Gray">
-          <Grid
-            Name="Footer"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Center">
-            <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="1*" />
-              <ColumnDefinition Width="1*" />
-              <ColumnDefinition Width="1*" />
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0" HorizontalAlignment="Stretch">
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="Auto" />
-              </Grid.ColumnDefinitions>
-              <Label
-                Grid.Column="0"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                FontSize="16">
-                Zoom Level:
-              </Label>
-              <Slider
-                Name="ZoomSlider"
-                Grid.Column="1"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Center"
-                Maximum="2"
-                Minimum="0.5"
-                ValueChanged="ZoomHandler"
-                Value="1" />
-              <TextBlock
-                Name="ZoomAmount"
-                Grid.Column="2"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center" />
-              <Button
-                Grid.Column="3"
-                VerticalAlignment="Center"
-                Click="ResetZoomHandler">
-                ⟳
-              </Button>
+        <Menu>
+            <MenuItem Header="_File">
+                <MenuItem Header="_Open" />
+                <MenuItem Click="SaveAsOrOverwriteHandler"
+                          Header="_Save" />
+                <MenuItem Click="SaveAsHandler"
+                          Header="_Save As" />
+                <MenuItem Click="HomeMenuHandler"
+                          Header="_Home" />
+            </MenuItem>
+            <MenuItem Header="_Edit" />
+            <MenuItem Header="_Help" />
+        </Menu>
+        <SplitView Name="Toolbar"
+                   Grid.Row="1"
+                   DisplayMode="CompactOverlay"
+                   IsPaneOpen="False"
+                   OpenPaneLength="200"
+                   PanePlacement="Right">
+            <Grid Name="ContentGrid"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <ScrollViewer Name="viewport"
+                              Grid.Row="0"
+                              Padding="30"
+                              HorizontalScrollBarVisibility="Auto"
+                              VerticalScrollBarVisibility="Auto">
+                    <paz:ZoomBorder Name="viewportZoomBorder"
+                                    ClipToBounds="True"
+                                    EnablePan="True"
+                                    EnableZoom="False"
+                                    Stretch="None">
+                        <Label>Test label</Label>
+                    </paz:ZoomBorder>
+                </ScrollViewer>
+                <Border Grid.Row="1"
+                        Padding="100,5"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Background="Gray">
+                    <Grid Name="Footer"
+                          HorizontalAlignment="Stretch"
+                          VerticalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0"
+                              HorizontalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="16">                                
+                                Zoom Level:
+                            </Label>
+                            <Slider Name="ZoomSlider"
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Center"
+                                    Maximum="2"
+                                    Minimum="0.5"
+                                    ValueChanged="ZoomHandler"
+                                    Value="1" />
+                            <TextBlock Name="ZoomAmount"
+                                       Grid.Column="2"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center" />
+                            <Button Grid.Column="3"
+                                    VerticalAlignment="Center"
+                                    Click="ResetZoomHandler">                                
+                                ⟳
+                            </Button>
+                        </Grid>
+                    </Grid>
+                </Border>
             </Grid>
-
-          </Grid>
-        </Border>
-
-      </Grid>
-      <SplitView.Pane>
-        <StackPanel>
-          <Button
-            HorizontalAlignment="Left"
-            Classes="h1"
-            Click="ToggleToolBarHandler">
-            ☰
-          </Button>
-
-          <Border Padding="50">
-            <Label>Here are tools</Label>
-          </Border>
-
-        </StackPanel>
-
-      </SplitView.Pane>
-
-
-    </SplitView>
-  </Grid>
+            <SplitView.Pane>
+                <StackPanel Name="toolbox">
+                    <Button HorizontalAlignment="Left"
+                            Classes="h1"
+                            Click="ToggleToolBarHandler">                        
+                        ☰
+                    </Button>
+                    <Border Padding="50">
+                        <StackPanel>
+                            <Label Content="Title" />
+                            <TextBox HorizontalAlignment="Stretch"
+                                     Text="{Binding Title}" />
+                            <Label Content="Version" />
+                            <TextBox Text="{Binding Version}" />
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </SplitView.Pane>
+        </SplitView>
+    </Grid>
 </Window>
